@@ -1,22 +1,23 @@
 const int PROX = 5;
 const int lightPin = 26;
+const int LEDPIN = 15;
 int pinState = 0;
 int lightLevel = 0;
 
 void setup() {
     pinMode(PROX, INPUT);
-    pinMode(LED_BUILTIN, OUTPUT);
+    pinMode(LEDPIN, OUTPUT);
 }
 
 void loop() {
     pinState = digitalRead(PROX);
     lightLevel = analogRead(lightPin);
     if (pinState && lightLevel < 1000) {
-        digitalWrite(LED_BUILTIN, HIGH);
+        digitalWrite(LEDPIN, HIGH);
         delay(4000);
     }
     else {
-        digitalWrite(LED_BUILTIN, LOW);
+        digitalWrite(LEDPIN, LOW);
         delay(250);
     }
 }
