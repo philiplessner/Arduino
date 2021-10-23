@@ -1,20 +1,22 @@
-const int PROX = 5;
-const int lightPin = 26;
+const int proximitySensorPin = 5;
+const int lightSensorPin = 26;
 const int LEDPIN = 15;
-int pinState = 0;
+const int lightLevelThreshold = 300;
+const int ledOnTime = 10000;
+int proximitySensorState = 0;
 int lightLevel = 0;
 
 void setup() {
-    pinMode(PROX, INPUT);
+    pinMode(proximitySensorPin, INPUT);
     pinMode(LEDPIN, OUTPUT);
 }
 
 void loop() {
-    pinState = digitalRead(PROX);
-    lightLevel = analogRead(lightPin);
-    if (pinState && lightLevel < 1000) {
+    proximitySensorState = digitalRead(proximitySensorPin);
+    lightLevel = analogRead(lightSensorPin);
+    if (proximitySensorState && lightLevel < lightLevelThreshold) {
         digitalWrite(LEDPIN, HIGH);
-        delay(4000);
+        delay(ledOnTime);
     }
     else {
         digitalWrite(LEDPIN, LOW);
